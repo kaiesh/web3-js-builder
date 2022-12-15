@@ -10,7 +10,9 @@ All components used are open-source and client-side, so customisation is encoura
 
 ## Getting started
 
-Run `index.html` on a local PHP enabled server, or use https://web3jsbuilder.kaiesh.com/
+Run `index.html` on a local PHP enabled server.
+
+Refer to <https://www.github.com/kaiesh/connect-web3-wallets> for options that can be used to extend the auto-generated JS.
 
 ## Usage instructions
 
