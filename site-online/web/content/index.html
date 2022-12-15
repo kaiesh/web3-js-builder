@@ -1,0 +1,83 @@
+<html>
+<head>
+  <title>Web3 JS Builder</title>
+  <link rel="stylesheet" href="/css/index.css" />
+</head>
+<body>
+  <h1>Web3 JS Builder</h1>
+  <h3>For the busy solidity developer</h3>
+
+  Go from an ABI file like this
+  <span class="code">
+    [	{
+      "inputs": [],
+      "name": "numberOfMints",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }]
+  </span>
+  To JS functions like this:
+  <span class="code">
+    chain.read.MyContract.numberOfMints()
+      .then(function(mint_count){
+        alert(mint_count);
+      })
+      .catch(function(err){
+        console.error(err);
+      });
+  </span>
+  Complete with multi-wallet support, WalletConnect integration and web3.js objects.
+  <h3>Conversion takes place client-side in JavaScript. To get around CORS restrictions, only your ABI file is retrieved via a proxy.</h3>
+
+  <h2>Convert ABIs into usable JS functions for your web2 developers</h2>
+  <div id="abi-form">
+    <label for="abi-network">Which network are your read/write contracts on?</label>
+    <select id="abi-network">
+      <option id="1">Ethereum Mainnet</option>
+      <option id="3">Ethereum Ropsten</option>
+      <option id="5">Ethereum Gorli</option>
+      <option id="42">Ethereum Kovan</option>
+      <option id="56">Binance Smart Chain Mainnet</option>
+      <option id="97">Binance Smart Chain Testnet</option>
+      <option id="137">Polygon Matic Mainnet</option>
+      <option id="80001">Polygon Matic Mumbai</option>
+    </select>
+  </div>
+  <button id="addmore">Add another ABI</button>
+  <button id="build">Build JS</button>
+
+  <textarea id="builder_out">Your generated JS code will appear here</textarea>
+
+  <div id="abitemplate" class="hide">
+    <label for="abi1-name">Give your ABI contract a programmer friendly name</label>
+    <input type="text" id="abi1-name" placeholder="MyContract" />
+    <label for="abi1-ct">Provide the contract address where the ABI is deployed</label>
+    <input type="text" id="abi1-ct" placeholder="0x1234...." />
+    <label for="abi1-url">URL to your ABI JSON file</label>
+    <input type="text" id="abi1-url" placeholder="https://www.domain.com/abi/MyContract.json" />
+    <label for="abi1-ro">Contract is read-only</label><input type="checkbox" id="abi1-ro" data-prefix="abi1" />
+    <label class="hide" id="lbl-abi1-network" for="abi1-network">Specify network to read from</label>
+    <select class="hide" id="abi1-network">
+      <option id="1">Ethereum Mainnet</option>
+      <option id="3">Ethereum Ropsten</option>
+      <option id="5">Ethereum Gorli</option>
+      <option id="42">Ethereum Kovan</option>
+      <option id="56">Binance Smart Chain Mainnet</option>
+      <option id="97">Binance Smart Chain Testnet</option>
+      <option id="137">Polygon Matic Mainnet</option>
+      <option id="80001">Polygon Matic Mumbai</option>
+    </select>
+  </div>
+  <script src="/js/builder.js"></script>
+  <script src="/js/KVWeb3Builder.js"></script>
+  <script src="/js/index.js"></script>
+
+</body>
+</html>

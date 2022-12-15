@@ -1,0 +1,33 @@
+.hide{
+    display: none;
+}
+span.code{
+    font-family: monospace;
+    background: #000;
+    color: rgb(43, 255, 43);
+    font-weight: bold;
+    display: block;
+    padding: 1em;
+    border-radius: 0.5em;
+    max-width: 70vw;
+}
+
+.abifields {
+    border: 1px solid;
+    padding: 1em;
+    border-radius: 0.5em;
+    margin: 0.5em 0;
+    max-width: 70vw;
+}
+
+label{
+    display: block;
+}
+
+#builder_out{
+    background: #000;
+    color: rgb(43, 255, 43);
+    height: 10em;
+    width: 70vw;
+    display: block;
+}
