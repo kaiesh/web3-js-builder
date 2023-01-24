@@ -127,7 +127,13 @@
         console.error("Ignoring incomplete spec for entry "+i);
       }
     }
-    builder(abi_arr).then(function(output){
+    builder(
+      abi_arr, 
+      { 
+        web3network: document.getElementById("abi-network").options[document.getElementById("abi-network").selectedIndex].id * 1,
+        infuraID: document.getElementById("infura_id").value.trim().length > 0 ? document.getElementById("infura_id").value : null
+      }
+    ).then(function(output){
       document.getElementById("builder_out").value = output;
     });
   })
