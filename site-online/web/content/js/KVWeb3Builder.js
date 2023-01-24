@@ -6,19 +6,15 @@ let KVWeb3Builder = function(ct_name, ct_address, abi, ro){
     ct_name: ct_name,
     ct_address: ct_address,
     ct_abi: abi,
-    ro: ro > 0 ? ro : 0
+    ro: ro > 0 ? ro : 0,
+    abi_obj: false
   };
 };
 
 KVWeb3Builder.prototype.init = function(){
   let thi = this;
   return new Promise((resolve, reject)=>{
-    console.log(thi.chainFunctions.ct_abi);
-    ajax({"t":thi.chainFunctions.ct_abi}, {
-      "api_url": "/api/proxy.php",
-      // "method": "GET"
-    })
-    .then(function(abi){
+    let process_abi = function(abi){
       for (let j = 0; j < abi.length; j++){
         if (abi[j].type == "function"){
           let fn_source = "function";
@@ -37,13 +33,29 @@ KVWeb3Builder.prototype.init = function(){
             thi.chainFunctions.write[abi[j].name] = fn_source;
           }else{
             //payable method
-            console.error("No support for "+abi[j].stateMutability+" fns ("+fn+") right now");
+            console.error("No support for "+abi[j].stateMutability+" fns ("+abi[j].type+") right now");
           }
-
+  
         }
       }
       resolve();
-    }).catch(reject);
+    };
+    if (thi.chainFunctions.ct_abi.substring(0,4) != "http" && Array.isArray(JSON.parse(thi.chainFunctions.ct_abi)) ){
+      let msgUint8 = new TextEncoder().encode(this.chainFunctions.ct_name);
+      crypto.subtle.digest('SHA-1', msgUint8).then(function(hashBuffer){
+        let hashArray = Array.from(new Uint8Array(hashBuffer));
+        let hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
+        thi.chainFunctions.abi_obj = {hash: hashHex, code: JSON.parse(thi.chainFunctions.ct_abi)};
+        process_abi(thi.chainFunctions.abi_obj.code);
+      });
+    }else{
+      console.log(thi.chainFunctions.ct_abi);
+      ajax({"t":thi.chainFunctions.ct_abi}, {
+        "api_url": "/api/proxy.php",
+        // "method": "GET"
+      })
+      .then(process_abi).catch(reject);
+    }
   });
 };
 KVWeb3Builder.prototype.is_read_only = function(){
@@ -59,7 +71,17 @@ KVWeb3Builder.prototype.get_fnheader_declarations = function(){
 }
 
 KVWeb3Builder.prototype.get_contract_init = function(){
-  let init_block = "KV.ContractFns.prepare_contract({short_name: '"+this.chainFunctions.ct_name+"',contract_address:'"+this.chainFunctions.ct_address+"',contract_abi:'"+this.chainFunctions.ct_abi+"'";
+  //TODO update this block to account for the ABI being stored in a variable if abi_json is set
+  let abi_reference, init_block = "";
+  if (this.chainFunctions.abi_obj){
+    //the full ABI JSON was provided, so store this in a variable, and then reference the var
+    
+    init_block += "let abi_"+this.chainFunctions.abi_obj.hash+" = "+JSON.stringify(this.chainFunctions.abi_obj.code)+";\n";
+    abi_reference = "abi_"+this.chainFunctions.abi_obj.hash;
+  }else{
+    abi_reference = "'"+this.chainFunctions.ct_abi+"'";
+  }
+  init_block += "KV.ContractFns.prepare_contract({short_name: '"+this.chainFunctions.ct_name+"',contract_address:'"+this.chainFunctions.ct_address+"',contract_abi:"+abi_reference;
   if (this.chainFunctions.ro > 0){
     init_block += ",readonly_from_chain_id: "+this.chainFunctions.ro;
   }
