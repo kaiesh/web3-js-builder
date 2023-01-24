@@ -25,58 +25,6 @@
       }
     });
   };
-  /*var checkHuman = function(){
-    if (typeof grecaptcha == 'object' && grecaptcha != null && typeof grecaptcha.execute == "function"){
-      setTimeout(function(){ grecaptcha.reset(); grecaptcha.execute(); },10);
-    }else{
-      setTimeout(checkHuman, 2000);
-    }
-  }
-  var recapFn = function(captchaToken){
-    let email = document.getElementById("emailaddress");
-    let joinbtn = document.getElementById("joinnewsletter");
-    ajax({
-      "action": "joinsendinbluelist",
-      "email": email.value,
-      "token": captchaToken
-    }).then(function(res){
-      if (res.status == "ok"){
-        showToast("We have sent you a confirmation message! Please check your mailbox!", "good");
-        email.value = "";
-      }else{
-        showToast("There was an error adding you to the mailing list! The server said: "+res.msg, "bad");
-      }
-      joinbtn.disabled = false;
-      joinbtn.src = joinbtn.original_src;
-      email.disabled = false;
-    }).catch(function(err){
-      showToast("There was a problem adding you to the mailing list! Please try again later.", "bad");
-      joinbtn.disabled = false;
-      joinbtn.src = joinbtn.original_src;
-      email.disabled = false;
-    });
-  };
-  exports.recaptchaResult = recapFn;
-  var enable_email_subscription_btn = function(){
-    var joinbtn = document.getElementById("joinnewsletter");
-    joinbtn.addEventListener("click", function(){
-      if (joinbtn.disabled){ return false; }
-
-      let email = document.getElementById("emailaddress");
-      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value)){
-        email.disabled = true;
-        joinbtn.disabled = true;
-        joinbtn.original_src = joinbtn.src;
-        joinbtn.src = "https://assets.jedstar.space/img/sv_loading_lo.gif";
-        checkHuman();
-      }else{
-        showToast("Your email address does not appear correct. Please check it and try again!", "bad");
-      }
-
-    })
-  };
-  shield("https://www.google.com/recaptcha/api.js", enable_email_subscription_btn, "head", "script", 0);*/
-
   //reformat code blocks
   for (let i = 0; i < document.getElementsByClassName("code").length; i++){
     document.getElementsByClassName("code")[i].innerHTML = document.getElementsByClassName("code")[i].innerHTML.replaceAll(" ","&nbsp;").replaceAll("\n", "<br/>") 
