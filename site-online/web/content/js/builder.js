@@ -2,7 +2,7 @@
  usage:
 
  builder(
-   [{name, address, abi_url, ro_network}]
+   [{name, address, abi_url/abi_json_string, ro_network}]
    {
      web3network: <network ID>,
      infuraID: <infura ID>
@@ -17,7 +17,7 @@ var ajax = function(e,r){var t="";for(var n in e)e.hasOwnProperty(n)&&(t+=(""==t
 var shield = function ( s, h, i, e, l, d ){ var g = document.createElement(e); g.src = s; if (typeof h=="function") g.onload=h; g.async="async"; document.getElementsByTagName(i)[l].appendChild(g);};
 
 /***
- * Provide an array of {name, address, abi_url, ro_network (optional)}
+ * Provide an array of {name, address, abi_url/abi_json_string, ro_network (optional)}
  * Options to provide:
  * - infuraID: InfuraID (used if any non-BSC RO contracts)
  * - web3network: Web3 network ID
