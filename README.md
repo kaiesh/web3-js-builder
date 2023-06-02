@@ -1,5 +1,9 @@
 # web3-js-builder
 
+### Live and working
+
+Available [here](https://kaiesh.com/web3-js-builder/)
+
 ### Convert solidity ABIs into fully functional JS interfaces
 
 Crafting a JS interface for a solidity ABI is a repetitive process, and the more ABIs you have, the more cumbersome this becomes. This tool is designed to take ABIs as input, and output a JS file that can be passed to web2 developers for their immediate implementation.
@@ -16,8 +20,7 @@ Refer to <https://www.github.com/kaiesh/connect-web3-wallets> for options that c
 
 ## Usage instructions
 
-- Mint your smart contract and retrieve the contract address
-- Upload your JSON ABIs to the same server your JS script will be run from, or to a webspace that serves CORS friendly headers
-- Load `index.html` and specify a developer friendly name for the contract, the contract address, and the ABI URL
+- Mint your smart contract and retrieve the contract address along with the ABI JSON
+- Visit <https://kaiesh.com/web3-js-builder/> and specify a developer friendly name for the contract, the contract address, and paste in the ABI JSON
 - Hit build
 - Send the resulting JS file to your Web2 developer

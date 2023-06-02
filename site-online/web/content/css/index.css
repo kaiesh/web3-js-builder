@@ -1,5 +1,70 @@
+body{
+    /* font-family: Arial, sans-serif; */
+    font-family: "Lato", sans-serif;
+    color: #333;
+    padding: 0 10vw 0 10vw;
+}
+
+h1 {
+    font-weight:900;
+    font-size: 5em;
+}
+
+h2{
+    font-size: 3em;
+    font-weight:900;
+}
+
+h3{
+    font-size: 1.5em;
+}
+
+button{
+    padding: 1em;
+    background-color: #dfe1e4;
+    border-style: solid;
+    border-radius: 7px;
+    transition: 0.3s;
+}
+button:hover{
+    cursor: pointer;
+    background-color: white;
+}
+select{
+    padding: 0.5em;
+    border-style: solid;
+    border-radius: 6px;
+}
+input{
+    padding: 0.5em;
+    border-radius: 8px;
+    border-style: solid;
+    left: 0.5em;
+    position: relative;
+    width: 100%;
+
+}
+
 .hide{
     display: none;
+}
+.title{
+    text-align: center;
+}
+.title h1{
+    margin-bottom: 0px;
+}
+.container{
+    text-align: center;
+    display: inline-block;
+    /* display: flex;
+    justify-content: space-around; */
+    max-width: 70em;
+}
+.code-container{
+    text-align: left;
+    display: inline-block;
+    padding: 0 2em 0 2em;
 }
 span.code{
     font-family: monospace;
@@ -13,11 +78,48 @@ span.code{
 }
 
 .abifields {
-    border: 1px solid;
+    /* display:flex; */
+    /* border: 1px solid; */
     padding: 1em;
+    padding-right: 1.5em;
     border-radius: 0.5em;
     margin: 0.5em 0;
-    max-width: 70vw;
+    max-width: 24em;
+    /* box-shadow: 0 20px 40px rgb(0 0 0 / 15%); */
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.abifields label{
+    padding:0.5em;
+}
+/* .abifields input{
+    padding: 0.5em;
+    border-radius: 8px;
+    border-style: solid;
+    left: 0.5em;
+    position: relative;
+    width: 100%;
+} */
+.abifields textarea{
+    border-style: solid;
+    border-radius: 8px;
+    left: 0.5em;
+    position: relative;
+    width: 100%;
+    height: 7em;
+    resize:vertical;
+}
+.card-container{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 1vw;
+    padding: 1em;
+    width: 34.5vw;
+    background-color: #f7f8f9;
+    border-radius: 8px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(8, 38, 42, 0.1);
 }
 
 label{
@@ -27,7 +129,196 @@ label{
 #builder_out{
     background: #000;
     color: rgb(43, 255, 43);
-    height: 10em;
-    width: 70vw;
+    height: 63.5em;
+    width: 30vw;
     display: block;
+    border-radius:0.5em;
+    border-style: none;
+    padding: 1em;
+}
+
+.abi-container{
+    text-align: center;
+    /* margin: 0px; */
+    padding: 1em;
+    padding-top:4em;
+}
+.abi-form-container{
+    text-align: left;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 3em 2vw 5em 2vw;
+    gap: 1vw;
+}
+.button-container{
+    padding: 1em 0.5em 1em 0.5em !important; 
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+#abi-form *{
+    padding: 1em;
+}
+#abi-form label{
+    padding-left: 0.5em;
+}
+#abi-network{
+    position:relative;
+    left:1em;
+}
+#infura_id{
+    width: 32em;
+}
+#build{
+    background-color: #27ae60;
+    color: white;
+    border-color: white;
+    transition: 0.3s;
+    padding: 1em;
+    height: 4em;
+    /* align-self: center; */
+    /* position: relative;
+    top: 22em; */
+}
+#build:hover{
+    background-color: white;
+    border-color: #27ae60;
+    color: #27ae60;
+}
+
+.checkbox-container .checkbox{
+    appearance: none;
+    background-color: #dfe1e4;
+    border-radius: 72px;
+    border-style: none;
+    flex-shrink: 0;
+    height: 20px;
+    margin: 0;
+    position: relative;
+    width: 35px;
+    padding: 0 !important;
+}
+
+.checkbox-container .checkbox::before {
+    bottom: -6px;
+    content: "";
+    left: -6px;
+    position: absolute;
+    right: -6px;
+    top: -6px;
+}
+
+.checkbox-container .checkbox,
+.checkbox-container .checkbox::after {
+    transition: all 100ms ease-out;
+}
+
+.checkbox-container .checkbox::after {
+    background-color: #fff;
+    border-radius: 50%;
+    content: "";
+    height: 14px;
+    left: 3px;
+    position: absolute;
+    top: 3px;
+    width: 14px;
+}
+
+.checkbox-container input[type=checkbox] {
+    cursor: default;
+}
+
+.checkbox-container .checkbox:hover {
+    background-color: #c9cbcd;
+    transition-duration: 0s;
+}
+
+.checkbox-container .checkbox:checked {
+    background-color: #7FC6A6;
+}
+
+.checkbox-container .checkbox:checked::after {
+    background-color: #fff;
+    left: 17px;
+}
+
+.checkbox-container :focus:not(.focus-visible) {
+    outline: 0;
+}
+
+.checkbox-container .checkbox:checked:hover {
+    background-color: #7FC6A6;
+}
+
+.builder-container{
+    /* display: flex;
+    justify-content: center; */
+    width: 50%;
+}
+
+#forkme{
+    width: 330px;
+    background: #000;
+    color: #FFF;
+    position: absolute;
+    top: 50px;
+    left: -81px;
+    text-align: center;
+    font-weight: bold;
+    transform: rotateZ(-45deg);
+    height: 40px;
+    font-size: 20px;
+    line-height: 40px;
+}
+#forkme a{
+    color: #FFF;
+    text-decoration: none;
+}
+
+/* MOBILE */
+
+@media only screen and (max-width: 767px){
+    .abi-form-container{
+        display: grid;
+        justify-content: center;
+        text-align: center;
+    }
+    .card-container{
+        width: 26em;
+        text-align: left;
+    }
+    .button-container{
+        display: flex;
+        justify-content: center;
+    }
+    .builder-container{
+        width: 100%;
+    }
+    #builder_out{
+        width: 100%;
+    }
+
+}
+
+@media only screen and (max-width: 1024px){
+    .abi-form-container{
+        display: grid;
+        justify-content: center;
+        text-align: center;
+    }
+    .card-container{
+        width: 26em;
+        text-align: left;
+    }
+    .button-container{
+        display: flex;
+        justify-content: center;
+    }
+    .builder-container{
+        width: 100%;
+    }
+    #builder_out{
+        width: 100%;
+    }
+
 }

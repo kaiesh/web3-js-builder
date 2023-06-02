@@ -1,70 +1,93 @@
 <html>
 <head>
   <title>Web3 JS Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/index.css" />
+  <meta name="viewport" content="initial-scale=1" />
 </head>
 <body>
-  <h1>Web3 JS Builder</h1>
-  <h3>For the busy solidity developer</h3>
-
-  Go from an ABI file like this
-  <span class="code">
-    [	{
-      "inputs": [],
-      "name": "numberOfMints",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    }]
-  </span>
-  To JS functions like this:
-  <span class="code">
-    chain.read.MyContract.numberOfMints()
-      .then(function(mint_count){
-        alert(mint_count);
-      })
-      .catch(function(err){
-        console.error(err);
-      });
-  </span>
-  Complete with multi-wallet support, WalletConnect integration and web3.js objects.
-  <h3>Conversion takes place client-side in JavaScript. To get around CORS restrictions, only your ABI file is retrieved via a proxy.</h3>
-
-  <h2>Convert ABIs into usable JS functions for your web2 developers</h2>
-  <div id="abi-form">
-    <label for="abi-network">Which network are your read/write contracts on?</label>
-    <select id="abi-network">
-      <option id="1">Ethereum Mainnet</option>
-      <option id="3">Ethereum Ropsten</option>
-      <option id="5">Ethereum Gorli</option>
-      <option id="42">Ethereum Kovan</option>
-      <option id="56">Binance Smart Chain Mainnet</option>
-      <option id="97">Binance Smart Chain Testnet</option>
-      <option id="137">Polygon Matic Mainnet</option>
-      <option id="80001">Polygon Matic Mumbai</option>
-    </select>
-    <label for="infura_id">If you have an Infura ID, enter it here (else leave blank)</label>
-    <input type="text" id="infura_id" placeholder="Infura ID" />
+  <div class = "title">
+    <h1>Web3 JS Builder</h1>
+    <h3>For the busy solidity developer</h3>
   </div>
-  <button id="addmore">Add another ABI</button>
-  <button id="build">Build JS</button>
+  <div style="text-align: center;display: inline-block;width: 100%;padding-top: 4em;">
+    <div class = "container">
+      <div class = "code-container">
+        <p>Go from an ABI file like this:</p>
+        <span class="code">
+  [	{
+    "inputs": [],
+    "name": "numberOfMints",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }]
+        </span>
+      </div>
+      <div class = "code-container">
+        <p>To JS functions like this:</p>
+        <span class="code">
+  chain.read.MyContract.numberOfMints()
+    .then(function(mint_count){
+      alert(mint_count);
+    })
+    .catch(function(err){
+      console.error(err);
+    });
+        </span>
+      </div>
+    </div>
+    <p style = "padding-top: 1em;">Complete with multi-wallet support, WalletConnect integration and web3.js objects.</p>
+    <h3>Conversion takes place client-side in JavaScript. Your ABI is bundled into the JS to avoid multiple network calls.</h3>
+  </div>
 
-  <textarea id="builder_out">Your generated JS code will appear here</textarea>
+
+  <div class = "abi-container">
+    <h2>Convert ABIs into usable JS functions for your Web2 developers</h2>
+    <div class = "abi-form-container">
+      <div id="abi-form">
+        <label for="abi-network">Which network are your read/write contracts on?</label>
+        <select id="abi-network">
+          <option id="1">Ethereum Mainnet</option>
+          <option id="3">Ethereum Ropsten</option>
+          <option id="5">Ethereum Gorli</option>
+          <option id="42">Ethereum Kovan</option>
+          <option id="56">Binance Smart Chain Mainnet</option>
+          <option id="97">Binance Smart Chain Testnet</option>
+          <option id="137">Polygon Matic Mainnet</option>
+          <option id="80001">Polygon Matic Mumbai</option>
+        </select>
+        <label for="infura_id">If you have an Infura ID, enter it here (else leave blank)</label>
+        <input type="text" id="infura_id" placeholder="Infura ID" />
+        <div class = "button-container">
+          <button id="addmore">Add another ABI</button>
+        </div>
+        <div id = "card-container" class = "card-container"></div>
+      </div>
+      <div class = "builder-container">
+        <button id="build">Build JS</button>
+        <textarea id="builder_out">Your generated JS code will appear here</textarea>
+      </div>
+    </div>
+    
+  </div>
 
   <div id="abitemplate" class="hide">
     <label for="abi1-name">Give your ABI contract a programmer friendly name</label>
     <input type="text" id="abi1-name" placeholder="MyContract" />
     <label for="abi1-ct">Provide the contract address where the ABI is deployed</label>
     <input type="text" id="abi1-ct" placeholder="0x1234...." />
-    <label for="abi1-url">URL to your ABI JSON file</label>
-    <input type="text" id="abi1-url" placeholder="https://www.domain.com/abi/MyContract.json" />
-    <label for="abi1-ro">Contract is read-only</label><input type="checkbox" id="abi1-ro" data-prefix="abi1" />
+    <label for="abi1-url">Paste your ABI here</label>
+    <textarea type="text" id="abi1-url" placeholder='[{"inputs": [],"name": "numberOfMints","outputs": [{"internalType": "uint256","name": "","type": "uint256"}], "stateMutability": "view", "type": "function"}]'></textarea>
+    <label for="abi1-ro">Contract is read-only</label><div class = "checkbox-container"><input type="checkbox" id="abi1-ro" class = "checkbox" data-prefix="abi1" /></div>
     <label class="hide" id="lbl-abi1-network" for="abi1-network">Specify network to read from</label>
     <select class="hide" id="abi1-network">
       <option id="1">Ethereum Mainnet</option>
@@ -80,6 +103,6 @@
   <script src="/js/builder.js"></script>
   <script src="/js/KVWeb3Builder.js"></script>
   <script src="/js/index.js"></script>
-
+  <div id="forkme"><a target="_blank" href="https://www.github.com/kaiesh/web3-js-builder">Fork me on GitHub!</a></div>
 </body>
 </html>

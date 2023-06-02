@@ -44,7 +44,8 @@
 
   let abiml = document.getElementById("abitemplate").innerHTML;
   let abicount = 1;
-  let abiform = document.getElementById("abi-form");
+  // let abiform = document.getElementById("abi-form");
+  let abiform = document.getElementById("card-container");
   let firstabi = document.createElement("DIV");
   firstabi.classList.add("abifields");
   firstabi.innerHTML = abiml;
