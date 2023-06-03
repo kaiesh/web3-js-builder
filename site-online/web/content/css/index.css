@@ -274,7 +274,16 @@ label{
     color: #FFF;
     text-decoration: none;
 }
-
+#seedemo{
+    margin: auto;
+    padding: 1em 8em;
+    background: greenyellow;
+    font-weight: bolder;
+    cursor: pointer;
+}
+#seedemo:disabled{
+    background: grey;
+}
 /* MOBILE */
 
 @media only screen and (max-width: 767px){
