@@ -46,7 +46,7 @@ input{
 }
 
 .hide{
-    display: none;
+    display: none !important;
 }
 .title{
     text-align: center;
@@ -278,6 +278,39 @@ label{
 /* MOBILE */
 
 @media only screen and (max-width: 767px){
+    body{
+        padding: 0 2vw 0 2vw;
+    }
+    .abi-form-container{
+        max-width: 98vw;
+    }
+    .abi-form-container label{
+        display: inline-block;
+    }
+    #abi-form label{
+        max-width: 95vw;
+        padding-left: unset;
+    }
+    #abi-form input {
+        width: calc(95vw - 1em);
+        left: unset;
+    }
+    #abi-form .button-container{
+        width: 90vw;
+        display: inline-block;
+    }
+    #abi-form .card-container{
+        width: 85vw;
+    }
+    #abi-form .card-container .abifields{
+        max-width: calc(85vw - 2em);
+    }
+    #abi-form .card-container .abifields input {
+        width: calc(85vw - 3em);
+    }
+    #abi-form .card-container .abifields input.checkbox {
+        width: 34px;
+    }
     .abi-form-container{
         display: grid;
         justify-content: center;
